@@ -1,0 +1,334 @@
+show dbs
+
+use studentDB
+db.delete
+
+use otherDB
+
+show DBS
+db
+
+show collections
+
+db.student_fee.insertOne(
+                 {"_id":1,
+				 "stu_name":"Vishal kumar Tyagi",
+				 "stu_email":"vishaltyagi11187@gmail.com",
+				 "stu_mobile":9910455253
+				 })
+,
+db.student_fee.insertMany([
+                         {"_id":2,"stu_name":"Abishek Tyagi",
+						 "stu_email":"abhityagi@gmail.com",
+						 "stu_mobile":9910455253, 
+						 "stu_fee":1000, 
+						 "stu_class":10
+						 },
+						{"_id":3,
+						 "stu_name":
+							{
+								"first_name":"Vishank",
+								"middle_name":"kuch nahi",
+								"last_name":"Tyagi"
+							},
+						 "stu_email":"vishankhtyagi@gmail.com",
+						 "stu_mobile":9910455253
+						 },
+						{
+						 "_id":4,
+						 "stu_name":
+							{
+								"first_name":"Vishank",
+								"middle_name":"",
+								"last_name":"Tyagi"
+							},
+						 "stu_email":"rahultyagi@gmail.com",
+						 "stu_mobile":9910455253
+						},
+						{
+						 "stu_name":"Harshit Tyagi",
+						 "stu_email":"abc@gmail.com",
+						 "stu_mobile":9910455253,
+						 "stu_fee":1200, 
+						 "stu_class":11
+						 }
+						])
+
+
+
+
+
+
+db.student.insertOne({"_id":1,"stu_name":"Vishal kumar Tyagi","stu_email":"vishaltyagi11187@gmail.com","stu_mobile":9910455253})
+
+
+
+
+db.student.insertMany([{"stu_name":"Abishek Tyagi","stu_email":"abhityagi@gmail.com","stu_mobile":9910455253,"class":12},
+{"stu_name":"Vishanks Tyagi","stu_email":"vishankhtyagi@gmail.com","stu_mobile":9910455253,"class":11},
+{"stu_name":"Rahul Tyagi","stu_email":"rahultyagi@gmail.com","stu_mobile":9910455253,"class":12},
+{"stu_name":"Harshit Tyagi","stu_email":"abc@gmail.com","stu_mobile":9910455253,"class":10}])
+
+db.student.find()
+
+db.student.update({"_id":{$eq:ObjectId("5d72ca95c41aa82f8a64f981")}}, {$set :{"stu_name":"Abishek Tyagi","stu_email":"abhityagi@gmail.com","stu_mobile":9988776655,"class":12}})
+db.student.update({_id:{$eq:ObjectId("5d72ca95c41aa82f8a64f982")}},{$set:{"stu_email" : "vishankhtyagi1991@gmail.com"}})
+db.student.updateMany({stu_mobile:{$eq:9910455253}},{$set:{class:"9"}})
+
+{ "_id" : ObjectId("5d72ca95c41aa82f8a64f981"), "stu_name" : "Abishek Tyagi", "stu_email" : "abhityagi@gmail.com", "stu_mobile" : 9910455253, "class" : 12 }
+{ "_id" : ObjectId("5d72ca95c41aa82f8a64f982"), "stu_name" : "Vishanks Tyagi", "stu_email" : "vishankhtyagi@gmail.com", "stu_mobile" : 9910455253, "class" : 11 }
+{ "_id" : ObjectId("5d72ca95c41aa82f8a64f983"), "stu_name" : "Rahul Tyagi", "stu_email" : "rahultyagi@gmail.com", "stu_mobile" : 9910455253, "class" : 12 }
+{ "_id" : ObjectId("5d72ca95c41aa82f8a64f984"), "stu_name" : "Harshit Tyagi", "stu_email" : "abc@gmail.com", "stu_mobile" : 9910455253, "class" : 10 }
+
+db.student.insertOne({"_id":6,
+                      "stu_name":{
+						  "first_name":"Vishal",
+						  "middle_Name":"Kumar",
+						  "last_name":"Tyagi"
+					  },
+					  "stu_email":"vishaltyagi11187@gmail.com",
+					  "stu_mobile":9910455253})
+
+db.collection.deleteMany()
+db.collection.deleteOne()
+
+
+https://docs.mongodb.com/manual/reference/method/db.collection.find/
+
+
+db.student_fee.find({"stu_name":{$eq:"Harshit Tyagi"}}).pretty();
+
+db.student_fee.find({"stu_name":{$eq:"Harshit Tyagi"}},{stu_name:1}).pretty();
+
+db.student_fee.find({$and:[{stu_class:{$eq:11}},{stu_name:{$eq:"Harshit Tyagi"}}]},{}).pretty();
+
+db.student_fee.find({$or:[{stu_class:{$eq:11}},{stu_name:{$eq:"Harshit Tyagi"}},{stu_mobile:{$eq:9910455253}}]},{}).pretty();
+
+
+
+
+===============================================================================================
+
+
+db.createCollection("course");
+
+db.course.insertOne({_id:1,course_name:"BTECH"});
+db.course.insert({_id:2,course_name:"MCA"});
+
+db.course.insert([
+                    {_id:6, course_name:"BCOM"},
+					{_id:7, course_name:"MCOM"},
+					{_id:8, course_name:"BSC"}
+]);
+
+db.course.insertOne({"_id":1,"course_name":"BTECH"});
+db.course.insertMany([{"_id":2,"course_name":"MCA"},
+					  {"_id":3,"course_name":"MBA"},
+					  {"_id":4,"course_name":"BBA"},
+					  {"_id":5,"course_name":"BCA"}]);
+					  
+db.course.find();
+
+db.createCollection("branch");
+db.branch.insertOne({"_id":1,"branch_name":"CS","course_id":1});
+db.branch.insertOne({"_id":2,"branch_name":"IT","course_id":1});
+db.branch.insertOne({"_id":3,"branch_name":"EC","course_id":1});
+db.branch.insertOne({"_id":4,"branch_name":"ME","course_id":1});
+db.branch.insertOne({"_id":5,"branch_name":"FINANCE","course_id":3});
+db.branch.insertOne({"_id":6,"branch_name":"HR","course_id":3});
+
+db.branch.deleteMany({course_id:{$eq:1}});
+db.branch.deleteMany({course_id:{$eq:3}});
+
+db.branch.insertMany([ 
+						{"_id":1,"branch_name":"CS","course_id":1},
+						{"_id":2,"branch_name":"IT","course_id":1},
+						{"_id":3,"branch_name":"EC","course_id":1},
+						{"_id":4,"branch_name":"ME","course_id":1},
+						{"_id":5,"branch_name":"FINANCE","course_id":3},
+						{"_id":6,"branch_name":"HR","course_id":3},
+						{"_id":7,"branch_name":"IT","course_id":3},
+						{"_id":8,"branch_name":"MARKETING","course_id":3}
+					]);						
+db.branch.find();
+
+db.branch.find({ $and :[{_id:{$eq:1}},{branch_name:{$eq:"CS"}} ]});
+
+db.branch.find(
+			{ $or :[{course_id:{$eq:1}},{branch_name:{$eq:"FINANCE"}} ] }
+);
+
+db.branch.deleteOne({branch_name:{$eq:"FINANCE"}});
+
+db.branch.deleteOne({course_id:{$eq:1}});
+
+db.branch.deleteMany({course_id:{$eq:1}});
+
+
+db.createCollection("student");
+
+db.student.insertMany([
+						{_id:1,stu_name:"SURYANSH TYAGI",stu_course:1,stu_branch:1,stu_phone:8278443333,stu_email:"abc@gmail.com"},
+						{_id:2,stu_name:"ABHISHEK TYAGI",stu_course:1,stu_branch:1,stu_phone:9999222200,stu_email:"abc@gmail.com"},
+						{_id:3,stu_name:"VISHAL TYAGI",stu_course:1,stu_branch:1,stu_phone:8278443334,stu_email:"abc@gmail.com"},
+						{_id:4,stu_name:"SURYANSH TYAGI",stu_course:1,stu_branch:1,stu_phone:8278444533,stu_email:"abc@gmail.com"},
+						{_id:5,stu_name:"PRANAV TYAGI",stu_course:1,stu_branch:1,stu_phone:8278443355,stu_email:"abc@gmail.com"},
+						{_id:6,stu_name:"RAM KUMAR",stu_course:3,stu_branch:1,stu_phone:8278443367,stu_email:"abc@gmail.com"},
+						{_id:7,stu_name:"RAJ KUMAR",stu_course:3,stu_branch:1,stu_phone:8278443333,stu_email:"abc@gmail.com"},
+						{_id:8,stu_name:"DREAM GIRL",stu_course:1,stu_branch:1,stu_phone:8278443333,stu_email:"abc@gmail.com"}
+						]);
+						
+db.student.insertOne({_id:9,stu_name:"DREAM GIRL",stu_course:1,stu_branch:1,stu_phone:8278443333,stu_email:"abc@gmail.com"});						
+db.student.find().pretty();
+
+db.student_fee.find().pretty();
+
+db.student.aggregate([
+   {
+     $lookup:
+       {
+         from: "branch",
+         localField: "stu_branch",
+         foreignField: "_id",
+         as: "stu_branch_details"
+       }
+  }
+]).pretty();
+
+select * from student inner join branch on student.stu_branch = branch.id
+
+db.student.aggregate([
+   {
+     $lookup:
+       {
+         from: "branch",
+         localField: "stu_branch",
+         foreignField: "_id",
+         as: "stu_branch"
+       }
+  }
+]).pretty();
+
+
+db.createCollection("orders");
+
+db.orders.insertMany([
+	{ _id: 1, cust_id: "abc1", ord_date: ISODate("2012-11-02T17:04:11.102Z"), status: "A", amount: 50 },
+	{ _id: 2, cust_id: "xyz1", ord_date: ISODate("2013-10-01T17:04:11.102Z"), status: "A", amount: 100 },
+	{ _id: 3, cust_id: "xyz1", ord_date: ISODate("2013-10-12T17:04:11.102Z"), status: "D", amount: 25 },
+	{ _id: 4, cust_id: "xyz1", ord_date: ISODate("2013-10-11T17:04:11.102Z"), status: "D", amount: 125 },
+	{ _id: 5, cust_id: "abc1", ord_date: ISODate("2013-11-12T17:04:11.102Z"), status: "A", amount: 25 }
+]);
+
+db.orders.find().pretty();
+
+db.orders.aggregate([
+                     { $match: { status: "A" } },
+                     { $group: { _id: "$cust_id", total: { $sum: "$amount" } } },
+                     { $sort: { total: -1 } }
+                   ])
+				   
+	
+
+{
+   "users" : [
+      {
+         "_id" : "<db>.<username>",
+         "userId" : <UUID>,        // Starting in MongoDB 4.0.9
+         "user" : "<username>",
+         "db" : "<db>",
+         "mechanisms" : [ ... ],   // Starting in MongoDB 4.0
+         "customData" : <document>,
+         "roles" : [ ... ],
+         "credentials": { ... }, // only if showCredentials: true
+         "inheritedRoles" : [ ... ],  // only if showPrivileges: true or showAuthenticationRestrictions: true
+         "inheritedPrivileges" : [ ... ], // only if showPrivileges: true or showAuthenticationRestrictions: true
+         "inheritedAuthenticationRestrictions" : [ ] // only if showPrivileges: true or showAuthenticationRestrictions: true
+         "authenticationRestrictions" : [ ... ] // only if showAuthenticationRestrictions: true
+      },
+      ...
+   ],
+   "ok" : 1
+}	
+				   
+db.getSiblingDB("student").runCommand( {
+       createUser: "AravindKumar",
+       pwd: passwordPrompt(),
+       customData: { employeeId: 12345 },
+       roles: [
+                { role: "clusterAdmin", db: "admin" },
+                { role: "readAnyDatabase", db: "admin" },
+                "readWrite"
+              ],
+       writeConcern: { w: "majority" , wtimeout: 5000 }
+} )
+
+//db.runCommand( { usersInfo: 1, filter: { roles: { role: "root", db: "student" } } } )
+
+//db.runCommand( { usersInfo: 1} )
+
+db.runCommand(
+   {
+     usersInfo:  { user: "AravindKumar", db: "student" },
+     showPrivileges: true,
+	 showCredentials: true
+   }
+)
+
+db.runCommand( {
+   dropUser: "reportUser1",
+   writeConcern: { w: "majority", wtimeout: 5000 }
+} )
+
+
+db.runCommand( {
+   dropUser: "accountAdmin01",
+   writeConcern: { w: "majority", wtimeout: 5000 }
+} )
+
+use student
+db.runCommand( { grantRolesToUser: "accountAdmin01",
+                 roles: [
+                    { role: "read", db: "student"},
+                    "readWrite"
+                 ],
+                 writeConcern: { w: "majority" , wtimeout: 2000 }
+             } )
+			 
+"roles" : [
+    { "role" : "assetsReader",
+      "db" : "assets"
+    },
+    { "role" : "read",
+      "db" : "stock"
+    },
+    { "role" : "readWrite",
+      "db" : "products"
+    }
+]
+
+
+db.runCommand( { revokeRolesFromUser: "accountAdmin01",
+                 roles: [
+                          { role: "read", db: "student" },
+                          "readWrite"
+                 ],
+                 writeConcern: { w: "majority" }
+             } )
+
+
+"credentials" : {
+					"SCRAM-SHA-1" : {
+							"iterationCount" : 10000,
+							"salt" : "nidCCBNjYPN+cjYrG7yCzQ==",
+							"storedKey" : "XgDQy8juj3u/y1QI8MOZZm5KlQ4=",
+							"serverKey" : "n/CRp8w7RqGePPzOY4zsbPAtsMw="
+					},
+					"SCRAM-SHA-256" : {
+							"iterationCount" : 15000,
+							"salt" : "8LnuyqbZecFJhhhOBaoA2XOQ2fXBf3UYOZnrIw==",
+							"storedKey" : "l3HYqYt8wlPCw1Y7YTG9Ks60dghC/vUP4SGhsMdAQDg=",
+							"serverKey" : "/AzaMIASW6zIlVvg3fBL8+iA7XrnrGi4XE2noM9Q7Yg="
+					}
+			},
+
